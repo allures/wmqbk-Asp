@@ -1,0 +1,84 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+<title>侧栏_无名简单微博V3</title>
+<link href="{$template}style/iNove.css" rel="stylesheet" type="text/css" /> 
+</head>
+<body>
+<div id="wrap">
+   {include("head.htm")}
+  <div id="content">
+    <div id="main"> 
+   <ul class="tabtitle">
+	{loop:name="widset"} <li{if:{@widset.@index}=1} class="on"{/if}>{@widset.title}</li> {/loop}
+	<li>添加边栏</li>
+   </ul>
+	{loop:name="widset"}
+	<div class="tabcontent"{if:{@widset.@index}>1} style="display:none"{/if}>
+     <form id="formwid{@widset.id}">
+	<div class="s_e">
+		<strong>标题:</strong>
+		<input type="text" class="input_narrow" name="title" value="{@widset.title}" maxlength="15" />
+	</div> 
+	<div class="s_h">
+		<strong>代码:</strong>（系统标签支持 comment topic）
+		<textarea name="html" class="input_textarea" onkeydown="if(event.keyCode==13){return false;}">{@widset.html}</textarea>
+	</div>
+	<div class="s_e">
+		<strong>排序:</strong>
+		<input type="text" class="input_narrow" name="ord" value="{@widset.ord}" maxlength="15" />
+	</div> 
+	<div class="s_s">
+		<button name="save" type="button"  class="btn" onclick="savewid({@widset.id})"> 保存 </button> 
+        <button name="del" type="button"  class="btn" onclick="delwid({@widset.id})"> 删除 </button> <span id="errmsg"></span>
+	</div>
+	<div id="result" class="s_r"></div>
+	</form>
+	</div>
+   {/loop}
+   <div class="tabcontent"  style="display:none">
+    <form id="formwid0">
+	<div class="s_e">
+		<strong>标题:</strong>
+		<input type="text" class="input_narrow" name="title" value="" maxlength="15" />
+	</div> 
+	<div class="s_h">
+		<strong>代码:</strong>（系统标签支持 comment topic）
+		<textarea name="html" class="input_textarea" onkeydown="if(event.keyCode==13){return false;}"></textarea>
+	</div>
+	<div class="s_e">
+		<strong>排序:</strong>
+		<input type="text" class="input_narrow" name="ord" value="" maxlength="15" />
+	</div> 
+	<div class="s_s">
+		<button name="save" type="button"  onclick="savewid(0)" class="btn"> 保存 </button> <span id="errmsg"></span>
+	</div>
+	<div id="result" class="s_r"></div>
+    </form>
+	</div>
+    </div>
+     {include("right.htm")}
+  </div>
+  <div id="footer">{include("foot.htm")}</div>
+</div>
+<script type="text/javascript" language="javascript" src="{$template}/js/jquery.min.js"></script>
+<script type="text/javascript" language="javascript" src="{$template}js/ajax.js"></script>
+ <SCRIPT language="javascript" type="text/javascript">
+$(document).ready(function () {
+$('.tabtitle li').click(function () {
+  var index = $(this).index();
+  $(this).addClass('on').siblings('li').removeClass('on');
+  $('.tabcontent').eq(index).show(200).siblings('.tabcontent').hide();
+});
+//  var t = 0;
+ // var timer = setInterval(function(){
+  //  if( t == $('.tabtitle li').length ) t = 0;
+   // $('.tabtitle li:eq('+t+')').click();
+  //  t++;
+ // }, 700)
+})
+</SCRIPT>
+</body>
+</html>

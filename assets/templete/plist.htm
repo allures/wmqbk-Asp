@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+<title>评论列表_无名简单微博V3</title>
+<meta name="keywords" content="微博,日志,无名" />
+<meta name="description" content="这里放微博简介" />
+<link href="{$template}style/iNove.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="wrap">
+  {include("head.htm")}
+  <div id="content">
+  <div id="main">
+     <div id="comment_list">
+	    <h4>评论列表</h4>
+         {loop:name="list"}
+		<div class="comlist" id="Com-{@list.pid}"><div id="Ctext-{@list.pid}"><p><strong>{@list.pname}</strong>：{if:{@list.isn}{var:admin}<>10}{@list.pcontent}{else}评论审核中...{/if} <a href="{@list.cid|vurl}#Com-{@list.pid}">[查看]</a></p>
+		{if:"{@list.rcontent}"<>""}<p class="re">&nbsp;&nbsp;<strong style="color:#C00">回复</strong>：<span>{@list.rcontent}</span></p>{/if}
+		</div><p class="time">{@list.ptime}</p>{if:{var:admin}=1}<p class="navPost"><a href="javascript:void(0)" onclick="repl('{@list.pid}','{@list.cid}')" title="回复评论">回复</a>&nbsp;<a href="javascript:void(0)" onclick="delpl('{@list.cid}','{@list.pid}')" class="item">删除</a>{if:{@list.isn}=1}<a id="sh-{@list.pid}" href="javascript:void(0)" onclick="shpl('{@list.pid}')" class="item">&nbsp;审核</a>{/if}</p>{/if}</div>
+        {loopelse}
+      <div class="comlist">暂无记录</div>
+	  {/loop}
+		
+	 </div> 
+	 <div id="pager">
+		<span class="info"> 共计：{var:pagenum} 条记录 每页:{var:pagesize}条</span>{var:pagelist}
+	</div>
+	 </div>
+     {include("right.htm")}
+  </div>
+  <div id="footer">{include("foot.htm")}</div>
+</div>
+<script type="text/javascript" language="javascript" src="http://lib.sinaapp.com/js/jquery/1.4.2/jquery.min.js"></script>
+<script type="text/javascript" language="javascript" src="{$template}js/ajax.js"></script>
+</body>
+</html> 

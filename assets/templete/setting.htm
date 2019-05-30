@@ -1,0 +1,73 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+<title>设置_{$webtitle}</title>
+<link href="{$template}style/iNove.css" rel="stylesheet" type="text/css" /> 
+</head>
+<body>
+<div id="wrap">
+   {include("head.htm")}
+  <div id="content">
+    <div id="main">
+	<ul class="tabtitle">
+	 <li class="on">博客设置</li> <li onclick="upCache()">更新缓存</li>	 
+   </ul>
+    <form id="formset" style="clear:both;margin:10px 0 0 10px;">
+	<div class="s_e">
+		<strong>您的昵称:</strong>
+		<input type="text" class="input_narrow" name="webuser" value="{$v.webuser}" maxlength="15" />
+	</div>
+	<div class="s_e">
+		<strong>微博标题:</strong>
+		<input type="text" class="input_narrow" name="webtitle" value="{$v.webtitle}" maxlength="30" />
+	</div> 
+	<div class="s_b">
+		<strong>微博说明:</strong>
+		<textarea name="webdesc" class="input_textarea" onkeydown="if(event.keyCode==13){return false;}">{$v.webdesc}</textarea>
+	</div> 
+	<div class="s_b">
+		<strong>导航设置:</strong>
+		<textarea name="menu" class="input_textarea">{$v.menu}</textarea>
+	</div>
+		<div class="s_e">
+		<strong>备案号:</strong>
+		<input type="text" class="input_narrow" name="icp" value="{$v.icp}" maxlength="30" />
+	</div>
+	<div class="s_d">
+		<span>评论状态:</span>
+		<select name="plsh"> 
+           <option value="0" {if:{$v.plsh} = 0}selected{/if}>开放</option> 
+           <option value="1" {if:{$v.plsh} = 1}selected{/if}>审核</option>	 
+		</select>
+	</div>
+	<div class="s_d">
+		<span>验证开关:</span>
+		<select name="safecode">	 
+           <option value="0" {if:{$v.safecode} = 0}selected{/if}>关闭</option> 
+           <option value="1" {if:{$v.safecode} = 1}selected{/if}>打开</option>  
+		</select>
+	</div> 
+	<div class="s_d">
+		<span>静态组件:</span>
+		<select name="rewrite">		
+           <option value="0" {if:{$v.rewrite} = 0}selected{/if}>关闭</option> 
+           <option value="1" {if:{$v.rewrite} = 1}selected{/if}>支持</option>	 
+		</select> Rewrite等伪静态组件
+	</div>
+	<div class="s_s">
+		<button name="save" type="button"  class="btn" onclick="saveset();" /> 保存 </button>   <span id="errmsg"></span>
+	</div>
+
+	<div id="result" class="s_r"></div>
+     </form>
+    </div>
+     {include("right.htm")}
+  </div>
+  <div id="footer">{include("foot.htm")}</div>
+</div>
+<script type="text/javascript" language="javascript" src="{$template}/js/jquery.min.js"></script>
+<script type="text/javascript" language="javascript" src="{$template}js/ajax.js"></script>
+</body>
+</html>

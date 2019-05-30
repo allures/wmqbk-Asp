@@ -1,0 +1,16 @@
+<div id="sidebar"> 
+	  {loop:name="widget"}
+      <div class="widget">
+        <h2>{@widget.title}</h2>     
+		{if:topic=@widget.html}		 
+           <ul class="topic"> {var:topic} </ul>
+	    {elseif:comment=@widget.html}
+           <ul class="comment">{var:comment}</ul>	 
+		{else}
+		  <ul>{@widget.html}</ul>
+		{/if}
+      </div>	  
+	  {/loop}
+
+	  {$query.a}
+</div>
